@@ -1,0 +1,37 @@
+apply plugin: 'com.android.library'
+
+android {
+
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    resourcePrefix 'lottie_'
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+    }
+
+    buildTypes {
+        ready {
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        textReport true
+        textOutput 'stdout'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation rootProject.ext.dependencies['support-recyclerview-v7']
+    implementation rootProject.ext.dependencies['support-annotations']
+}

@@ -1,0 +1,35 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'config.gradle'
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'http://build-android.inner.yizhibo.weibo.com:3001/remote' }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.3'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.6'
+        classpath 'com.yixia.router:build-gradle:1.0.1'
+        classpath 'com.tencent.bugly:tinker-support:1.1.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'http://build-android.inner.yizhibo.weibo.com:3001/remote' }
+        flatDir{
+            dirs '../ConstomLibrary/libs'
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+ext {
+    MIN_SDK_VERSION = 21
+    TARGET_SDK_VERSION = 28
+    COMPILE_SDK_VERSION = 28
+}
